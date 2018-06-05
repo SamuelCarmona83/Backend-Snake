@@ -4,7 +4,12 @@ const inmuebleSchema = mongoose.Schema({
 	_id: mongoose.Schema.Types.ObjectId,
 	//cositas de los inmuebles como objeto
 	name: String,
-	price: Number
+	surface: Number,
+	typePub: String,
+	privacy: String,
+	Address: String,
+	Observaciones: String,
+	propertytype: String
 
 });
 

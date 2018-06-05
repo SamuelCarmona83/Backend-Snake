@@ -1,9 +1,11 @@
 const express = require('express');
 const router = express.Router();
-const Inmueble = require('../models/inmueble');
 const mongoose = require('mongoose');
 
 
+
+
+const Inmueble = require('../models/inmueble');
 
 //General get inmuebles como vector
 router.get('/', (req, res, next) => {
@@ -34,7 +36,12 @@ router.post('/', (req, res, next) => {
 	const inmueble = new Inmueble({
 		_id: new mongoose.Types.ObjectId(),
 		name: req.body.name,
-		price: req.body.price
+		surface: req.body.surface,
+		typePub: req.body.typePub,
+		privacy: req.body.privacy,
+		address: req.body.address,
+		observaciones: req.body.observaciones,
+		propertytype: req.body.propertytype
 
 	});
 	inmueble.save()
