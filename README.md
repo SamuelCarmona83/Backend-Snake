@@ -18,12 +18,12 @@ https://apirest-suburbuy.herokuapp.com/
 
 # JSON de Users
 
-{
-	"email": "email",
-	"nombre": "nombre",
-	"password": "password",
-	"phone":  "0X1X-000-00-00"
-}
+	{
+		"email": "email",
+		"nombre": "nombre",
+		"password": "password",
+		"phone":  "0X1X-000-00-00"
+	}
 
 # JSON de Inmuebles
 	{
