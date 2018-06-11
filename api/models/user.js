@@ -3,10 +3,17 @@ const mongoose = require('mongoose');
 const userSchema = mongoose.Schema({
 	_id: mongoose.Schema.Types.ObjectId,
 	//cositas de los inmuebles como objeto
-	email: String,
-	name: String,
-	password: String,
-	phone:  String
+	email: { type: String, required: true},
+	nombre: { type: String, required: true},
+	password: { type: String, required: true},
+	phone:  { type: String, required: true}
+	//Publicacions[]
+	//clientes
+	//solicitudes[]
+	//Amigos[]
+	//url foto de perfil
+	//ventas[]
+	//Marcas de Favorito[]
 
 });
 

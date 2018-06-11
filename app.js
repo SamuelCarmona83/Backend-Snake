@@ -15,6 +15,7 @@ app.use(bodyParser.json());
 //admin:<PASSWORD> +process.env.MONGO_ATLAS_PW+
 //PAra no forzar el codigo en el deploy
 mongoose.connect('mongodb+srv://admin:admin@cluster0-9gsy8.mongodb.net/test?retryWrites=false');
+mongoose.Promise = global.Promise;
 
 //Aceso para todo el mundo y raymundo tambien supongo
 app.use((req, res, next)=>{
@@ -34,8 +35,12 @@ app.use((req, res, next)=>{
 app.use('/users', usersRoutes);
 app.use('/inmuebles', inmueblesRoutes);
 
+
+
+
+//Mensaje de ruta invalida o algo
 app.use((req, res, next)=>{
-	const error= new Error('Te falta calle peluche');
+	const error= new Error('Te falta calle peluche, intenta con otra ruta.');
 	error.status = 404;
 	next(error);
 });

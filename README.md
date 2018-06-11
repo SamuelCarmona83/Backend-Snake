@@ -25,6 +25,15 @@ https://apirest-suburbuy.herokuapp.com/
 		"phone":  "0X1X-000-00-00"
 	}
 
+# JSON patch USers
+
+	[
+	{"propName": "nombre", "value":"new name"},
+	{"propName": "email", "value":"new email"},
+	{"propName": "password", "value":"new password"},
+	{"propName": "phone", "value":"new phone"}
+	]
+
 # JSON de Inmuebles
 	{
 		"name": "Nombre de la Publicacion",

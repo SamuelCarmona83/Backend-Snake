@@ -10,6 +10,10 @@ const inmuebleSchema = mongoose.Schema({
 	Address: String,
 	Observaciones: String,
 	propertytype: String
+	//fotos[]
+	//coordenadas[] google maps supongo
+	// Agente capturador
+
 
 });
 
