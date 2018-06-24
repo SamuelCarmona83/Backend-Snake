@@ -6,7 +6,8 @@ const userSchema = mongoose.Schema({
 	email: { type: String, required: true},
 	nombre: { type: String, required: true},
 	password: { type: String, required: true},
-	phone:  { type: String, required: true}
+	phone:  { type: String, required: true},
+	publicaciones : [{ type: mongoose.Schema.Types.ObjectId, ref: 'Inmueble'}]
 	//Publicacions[]
 	//clientes
 	//solicitudes[]

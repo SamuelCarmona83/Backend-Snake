@@ -16,6 +16,13 @@ https://www.youtube.com/watch?v=WDrU305J1yw&list=PL55RiY5tL51q4D-B63KBnygU6opNPF
 # Enlace al Deploy
 https://apirest-suburbuy.herokuapp.com/
 
+# Datos de interes
+
+https://apirest-suburbuy.herokuapp.com/users
+
+
+https://apirest-suburbuy.herokuapp.com/users/id
+
 # JSON de Users
 
 	{
@@ -34,6 +41,7 @@ https://apirest-suburbuy.herokuapp.com/
 	{"propName": "phone", "value":"new phone"}
 	]
 
+https://apirest-suburbuy.herokuapp.com/inmuebles
 # JSON de Inmuebles
 	{
 		"name": "Nombre de la Publicacion",
@@ -45,3 +53,12 @@ https://apirest-suburbuy.herokuapp.com/
 		"propertytype": "Casa/Apartamento/Terreno"
 	}
 
+# Inmuebles de los Users
+https://apirest-suburbuy.herokuapp.com/users/ID/publicaciones
+
+	{	"count":2,
+		"publicaciones":
+	[{"_id":"id","name":"name","price":200,"__v":0},
+	 {"_id":"id2","name":"name2","__v":0,"price":300
+	}]
+	}
