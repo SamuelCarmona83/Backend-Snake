@@ -3,8 +3,16 @@ const router = express.Router();
 const mongoose = require('mongoose');
 const multer = require('multer');
 const Inmueble = require('../models/inmueble');
-//const path = require('path');
 
+
+/**
+ * Funcion que almacena imagenes en la propia base de datos
+ * @param  {object} req       body object
+ * @param  {file} file      image
+ * @param  {callback} cb)       {                         cb(null, './uploads/');  }       ruta de subida
+ * @param  {function} filename: function(req, file, cb) {                          cb(null,               new Date().toISOString().replace(/:/g, '-')+file.originalname);  }} imagepath
+ * @return {[type]}           [description]
+ */
 const storage = multer.diskStorage({
   destination: function(req, file, cb) {
     cb(null, './uploads/');
@@ -14,6 +22,13 @@ const storage = multer.diskStorage({
   }
 });
 
+/**
+ * filters of images to upload
+ * @param  {function}   req  peticion
+ * @param  {file}   file 
+ * @param  {callback} cb   callback
+ * @return {[type]}        [description]
+ */
 const fileFilter = (req, file, cb) => {
   // reject a file
   if (file.mimetype === 'image/jpeg' || file.mimetype === 'image/png') {
@@ -23,6 +38,10 @@ const fileFilter = (req, file, cb) => {
   }
 };
 
+/**
+ * multer method max size 5mb and filters
+ * @type {configs}
+ */	
 const upload = multer({
   storage: storage,
   limits: {
@@ -32,8 +51,12 @@ const upload = multer({
 });
 
 
-
-//General get inmuebles como vector
+/**
+ *  get inmuebles como vector general
+ * @param  {url} '/'   ruta general de inmuebles
+ * @param  {function} (req, res,          next [description]
+ * @return {[type]}       [description]
+ */
 router.get('/', (req, res, next) => {
 	Inmueble.find()
 	.exec()
@@ -55,11 +78,16 @@ router.get('/', (req, res, next) => {
 	});
 });
 
-//Peticion de Publicacion de inmueble // funcionando
 
+/**
+ * Peticion de Publicacion de inmueble // funcionando con imagen// deberia validarse de algunamanera
+ * @param  {url} '/'                           POST REQUEST
+ * @param  {function} upload.single('inmueblesimg') multer method for single image upload
+ * @param  {function} (req,                         res,          next [description]
+ * @return {[type]}                               [description]
+ */
 router.post('/', upload.single('inmueblesimg') ,(req, res, next) => {
 	//estructura del objeto inmueble o algo asi
-
 	const inmueble = new Inmueble({
 		_id: new mongoose.Types.ObjectId(),
 		nombre: req.body.nombre,
@@ -93,6 +121,12 @@ router.post('/', upload.single('inmueblesimg') ,(req, res, next) => {
 
 
 //prueba del get kinf of
+/**
+ * Get inmueble individual
+ * @param  {url} '/:inmuebleID' ID del inmueble a devolver
+ * @param  {function} (req,          res,          next [description]
+ * @return {[type]}                [description]
+ */
 router.get('/:inmuebleID', (req, res, next)=>{
 	const id = req.params.inmuebleID;
 	Inmueble.findById(id)
@@ -113,7 +147,12 @@ router.get('/:inmuebleID', (req, res, next)=>{
     });
 });
 
-
+/**
+ * UPDATE REQUEST
+ * @param  {url} '/:inmuebleID' UPDATE PATCH REQUEST
+ * @param  {fuction} (req,          res,          next [description]
+ * @return {[type]}                [description]
+ */
 router.patch('/:inmuebleID', (req, res, next)=>{
 	const id = req.params.inmuebleID;
 	//Cambios dinamicos sobre cualquier objeto
@@ -136,8 +175,12 @@ router.patch('/:inmuebleID', (req, res, next)=>{
 });
 
 
-//Eliminar error "code": 72,
-//"errmsg": "Cannot use (or request) retryable writes with limit=0"
+/**
+ * funciona la eliminacion pero no elimina la foto
+ * @param  {url} '/:inmuebleID' DELETE REQUEST
+ * @param  {fuction} (req,          res,          next [description]
+ * @return {response}                message and response
+ */
 router.delete('/:inmuebleID', (req, res, next)=>{
 	const id = req.params.inmuebleID;
 	Inmueble.remove({

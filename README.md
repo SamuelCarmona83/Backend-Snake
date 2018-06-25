@@ -50,8 +50,13 @@ https://apirest-suburbuy.herokuapp.com/inmuebles
 		"privacy": "public/private/friends",
 		"address": "Direccion",
 		"observaciones": "Si es fea o bonita",
-		"propertytype": "Casa/Apartamento/Terreno"
+		"propertytype": "Casa/Apartamento/Terreno",
+		"inmueblesimg": "path"
 	}
+
+# Imagen de un inmueble
+https://apirest-suburbuy.herokuapp.com/uploads/
+
 
 # Inmuebles de los Users
 https://apirest-suburbuy.herokuapp.com/users/ID/publicaciones
@@ -62,3 +67,4 @@ https://apirest-suburbuy.herokuapp.com/users/ID/publicaciones
 	 {"_id":"id2","name":"name2","__v":0,"price":300
 	}]
 	}
+
