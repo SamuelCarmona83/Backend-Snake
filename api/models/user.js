@@ -8,14 +8,12 @@ const userSchema = mongoose.Schema({
 	password: { type: String, required: true},
 	phone:  { type: String, required: true},
 	publicaciones : [{ type: mongoose.Schema.Types.ObjectId, ref: 'Inmueble'}]
-	//Publicacions[]
-	//clientes
+	//clientes[]
 	//solicitudes[]
 	//Amigos[]
 	//url foto de perfil
 	//ventas[]
 	//Marcas de Favorito[]
-
 });
 
 module.exports = mongoose.model('User', userSchema);

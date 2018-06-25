@@ -1,15 +1,42 @@
 const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
-
-
-
-
+const multer = require('multer');
 const Inmueble = require('../models/inmueble');
+//const path = require('path');
+
+const storage = multer.diskStorage({
+  destination: function(req, file, cb) {
+    cb(null, './uploads/');
+  },
+  filename: function(req, file, cb) {
+    cb(null,  new Date().toISOString().replace(/:/g, '-')+file.originalname);
+  }
+});
+
+const fileFilter = (req, file, cb) => {
+  // reject a file
+  if (file.mimetype === 'image/jpeg' || file.mimetype === 'image/png') {
+    cb(null, true);
+  } else {
+    cb(null, false);
+  }
+};
+
+const upload = multer({
+  storage: storage,
+  limits: {
+    fileSize: 1024 * 1024 * 5
+  },
+  fileFilter: fileFilter
+});
+
+
 
 //General get inmuebles como vector
 router.get('/', (req, res, next) => {
-	Inmueble.find().exec()
+	Inmueble.find()
+	.exec()
 	.then(docs => {
 		console.log(docs);
 		//if(docs.length >= 0){
@@ -30,18 +57,19 @@ router.get('/', (req, res, next) => {
 
 //Peticion de Publicacion de inmueble // funcionando
 
-router.post('/', (req, res, next) => {
+router.post('/', upload.single('inmueblesimg') ,(req, res, next) => {
 	//estructura del objeto inmueble o algo asi
-	
+
 	const inmueble = new Inmueble({
 		_id: new mongoose.Types.ObjectId(),
-		name: req.body.name,
+		nombre: req.body.nombre,
 		surface: req.body.surface,
 		typePub: req.body.typePub,
 		privacy: req.body.privacy,
 		address: req.body.address,
 		observaciones: req.body.observaciones,
-		propertytype: req.body.propertytype
+		propertytype: req.body.propertytype,
+		inmueblesimg: req.file.path
 
 	});
 	inmueble.save()

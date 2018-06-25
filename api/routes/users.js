@@ -7,7 +7,12 @@ const User = require('../models/user');
 const ObjectId = require('mongodb').ObjectID;
 
 
-//Handle get request ALLUSERS
+/**
+ * devuelve todos los usuarios de la bd
+ * @param  {url} '/'   /users
+ * @param  {funcion} (req, res,          next [description]
+ * @return {[type]}       response message
+ */
 router.get('/', (req, res, next) => {
     User.find()
         .select('_id email nombre password phone')
@@ -35,6 +40,12 @@ router.get('/', (req, res, next) => {
 });
 
 //POST USER individual
+/**
+ * Post de un nuevo usuario
+ * @param  {url} '/'   /users
+ * @param  {fuction} (req, res,          next [description]
+ * @return {[type]}       response
+ */	
 router.post('/', (req, res, next) => {
     const usuario = new User({
         _id: new mongoose.Types.ObjectId(),
@@ -66,9 +77,10 @@ router.post('/', (req, res, next) => {
 });
 
 /**
- * @param  {ruta de usuari oespecifico}
- * @param  {requerimientos respuestas y otros}
- * @return {null}
+ * Elimina los usuarios 
+ * @param  {url} '/:userID' usuario individual
+ * @param  {fuction} (req,      res,          next [description]
+ * @return {[type]}            [description]
  */
 router.delete('/:userID', (req, res, next) => {
     res.status(200).json({
@@ -82,7 +94,7 @@ router.delete('/:userID', (req, res, next) => {
 /**
  * Devuelve los usuarios de manera especifica e inividual
  * @param  {Url} '/:userID' id del usuario
- * @param  {promise} (req,      res,          next [description]
+ * @param  {function} (req,      res,          next [description]
  * @return {null}            [description]
  */
 router.get('/:userID', (req, res, next) => {
@@ -109,7 +121,7 @@ router.get('/:userID', (req, res, next) => {
 //Cambios sobre un usuario 
 /**
  * @param  {url}
- * @param  {Promesa}
+ * @param  {function}
  * @return {null}
  */
 router.patch('/:userID', (req, res, next) => {
@@ -142,7 +154,7 @@ router.patch('/:userID', (req, res, next) => {
 /**
  * devuelve la cantidad de publicaciones de un user y sus publicaciones
  * @param  {url} '/:userID/publicaciones' url de publicaciones de cada usuario
- * @param  {[type]} (req,                    res,          next [description]
+ * @param  {function} (req,                    res,          next [description]
  * @return {[type]}                          [description]
  */
 router.get('/:userID/publicaciones', (req, res, next) => {
@@ -166,17 +178,16 @@ router.get('/:userID/publicaciones', (req, res, next) => {
             console.log(err);
             res.status(500).json({ error: err });
         });
-
-
 });
 
 
 // post into an array of objects of a url still whit problems
 
 /**
- * @param  {enlace}
- * @param  {peticion}
- * @return {null}
+ * Agrega un nuevo inmueble a un usuario
+ * @param  {url} '/:userID/publicaciones' post
+ * @param  {function} (req,                    res,          next [description]
+ * @return {response}                          message
  */
 router.post('/:userID/publicaciones', (req, res, next) => {
     const id = req.params.userID;
@@ -198,7 +209,6 @@ router.post('/:userID/publicaciones', (req, res, next) => {
                 error: err
             });
         });
-
 });
 
 
