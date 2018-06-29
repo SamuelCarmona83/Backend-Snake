@@ -10,11 +10,15 @@ const inmuebleSchema = mongoose.Schema({
 	address: { type: String, required: true},
 	observaciones: { type: String, required: true},
 	propertytype: { type: String, required: true},
-	inmueblesimg: { type: String, required: true}
-	//coordenadas[] google maps supongo
-	// Agente capturador
+	inmueblesimg: { type: String, default:"https://pingendo.com/assets/photos/wireframe/photo-1.jpg"},
+	latitude: {type: Number, required: true},
+	longitude: {type: Number, required: true},
+	price: {type: Number, required: true},
+	sold: {type: Boolean, default: false},
+	date: { type: Date }
+	//deberia existir numero de publicacion o algo que permita validar 
 
-
+	
 });
 
 module.exports = mongoose.model('Inmueble', inmuebleSchema);

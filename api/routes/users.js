@@ -15,13 +15,14 @@ const ObjectId = require('mongodb').ObjectID;
  */
 router.get('/', (req, res, next) => {
     User.find()
-        .select('_id email nombre password phone')
+        .select('_id email nombre password phone publicaciones resume favorites clients')
         .exec()
         .then(docs => {
             const response = {
                 count: docs.length,
-                users: docs
-
+                users: {
+                    docs
+                        }
             };
             //if(docs.length >= 0){
             res.status(200).json(response);
@@ -83,9 +84,19 @@ router.post('/', (req, res, next) => {
  * @return {[type]}            [description]
  */
 router.delete('/:userID', (req, res, next) => {
-    res.status(200).json({
-        message: 'Usuario Eliminado',
-        userID: req.params.userID
+    const id = req.params.userID;
+    User.remove({
+        _id: id
+    })
+    .exec()
+    .then( result => {
+        res.status(200).json(result);
+    })
+    .catch(err => {
+        console.log(err);
+        res.status(500).json({
+            error: err
+        });
     });
 });
 

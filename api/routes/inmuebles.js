@@ -97,7 +97,11 @@ router.post('/', upload.single('inmueblesimg') ,(req, res, next) => {
 		address: req.body.address,
 		observaciones: req.body.observaciones,
 		propertytype: req.body.propertytype,
-		inmueblesimg: req.file.path
+		inmueblesimg: req.file.path,
+		latitude: req.body.latitude,
+		longitude: req.body.longitude,
+		price: req.body.price,
+		date: Date.now 
 
 	});
 	inmueble.save()
