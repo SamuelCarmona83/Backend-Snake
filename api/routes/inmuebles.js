@@ -97,7 +97,7 @@ router.post('/', upload.single('inmueblesimg') ,(req, res, next) => {
 		address: req.body.address,
 		observaciones: req.body.observaciones,
 		propertytype: req.body.propertytype,
-		inmueblesimg: req.file.path,
+		inmueblesimg: req.file.path,//"https://pingendo.com/assets/photos/wireframe/photo-1.jpg"
 		latitude: req.body.latitude,
 		longitude: req.body.longitude,
 		price: req.body.price,

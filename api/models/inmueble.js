@@ -10,7 +10,7 @@ const inmuebleSchema = mongoose.Schema({
 	address: { type: String, required: true},
 	observaciones: { type: String, required: true},
 	propertytype: { type: String, required: true},
-	inmueblesimg: { type: String, default:"https://pingendo.com/assets/photos/wireframe/photo-1.jpg"},
+	inmueblesimg: { type: String, required: true},
 	latitude: {type: Number, required: true},
 	longitude: {type: Number, required: true},
 	price: {type: Number, required: true},
