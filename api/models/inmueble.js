@@ -15,7 +15,7 @@ const inmuebleSchema = mongoose.Schema({
 	longitude: {type: Number, required: true},
 	price: {type: Number, required: true},
 	sold: {type: Boolean, default: false},
-	date: { type: Date }
+	date: { type: String }
 	//deberia existir numero de publicacion o algo que permita validar 
 
 	

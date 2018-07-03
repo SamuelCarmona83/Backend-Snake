@@ -101,7 +101,7 @@ router.post('/', upload.single('inmueblesimg') ,(req, res, next) => {
 		latitude: req.body.latitude,
 		longitude: req.body.longitude,
 		price: req.body.price,
-		date: Date.now 
+		date: new Date().toISOString()
 
 	});
 	inmueble.save()
