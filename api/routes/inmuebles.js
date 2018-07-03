@@ -61,7 +61,12 @@ router.get('/', (req, res, next) => {
 	Inmueble.find()
 	.exec()
 	.then(docs => {
-		console.log(docs);
+		const response = {
+			count: docs.length,
+                inmuebles: {
+                    docs
+                        }
+		};
 		//if(docs.length >= 0){
 			res.status(200).json(docs);
 		//}else{
@@ -97,7 +102,7 @@ router.post('/', upload.single('inmueblesimg') ,(req, res, next) => {
 		address: req.body.address,
 		observaciones: req.body.observaciones,
 		propertytype: req.body.propertytype,
-		inmueblesimg: req.file.path,//"https://pingendo.com/assets/photos/wireframe/photo-1.jpg"
+		inmueblesimg: 'https://apirest-suburbuy.herokuapp.com/'+req.file.path,//"https://pingendo.com/assets/photos/wireframe/photo-1.jpg"
 		latitude: req.body.latitude,
 		longitude: req.body.longitude,
 		price: req.body.price,
