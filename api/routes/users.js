@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
-
+const multer = require('multer');
 const Inmueble = require('../models/inmueble');
 const User = require('../models/user');
 const ObjectId = require('mongodb').ObjectID;

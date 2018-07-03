@@ -5,9 +5,11 @@ const inmueblesRoutes = require('./api/routes/inmuebles');
 const usersRoutes = require('./api/routes/users');
 const bodyParser =require('body-parser');
 const mongoose = require('mongoose');
+const multer = require('multer');
 
 
 
+//app.use(multer({storage: storage}).single('file'));
 app.use(morgan('dev'));
 app.use('/uploads', express.static('uploads'));
 app.use(bodyParser.urlencoded({extended: false}));
