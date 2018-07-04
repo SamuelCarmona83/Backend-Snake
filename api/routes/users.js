@@ -95,7 +95,7 @@ router.post('/', (req, res, next) => {
          });
        } else {
          bcrypt.hash(req.body.password, 10, (err, hash) => {
-           if (err===null) {
+           if (err) {
              return res.status(500).json({
                error: err
              });
