@@ -3,10 +3,14 @@ const mongoose = require('mongoose');
 const userSchema = mongoose.Schema({
 	_id: mongoose.Schema.Types.ObjectId,
 	//cositas de los inmuebles como objeto
-	email: { type: String, required: true},
-	nombre: { type: String, required: true},
+	email: { 
+        type: String, 
+        required: true, 
+        unique: true
+    },
+	nombre: { type: String},
 	password: { type: String, required: true},
-	phone:  { type: String, required: true},
+	phone:  { type: String},
 	publicaciones : [{ type: mongoose.Schema.Types.ObjectId, ref: 'Inmueble'}],
 	resume: { type: String},
 	clients :[{ type: mongoose.Schema.Types.ObjectId, ref: 'Cliente'}],
