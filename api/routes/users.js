@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
 const multer = require('multer');
-const Inmueble = require('../models/inmueble');
+//const Inmueble = require('../models/inmueble');
 const User = require('../models/user');
 const ObjectId = require('mongodb').ObjectID;
 
@@ -16,7 +16,7 @@ const jwt = require("jsonwebtoken");
  */
 router.get('/', (req, res, next) => {
     User.find()
-        .select('_id email nombre password phone publicaciones resume favorites clients')
+        .select('posicion enemigosmuertos inventario gameobject escena vida daño dañoactual ')
         .exec()
         .then(docs => {
             const response = {
@@ -54,7 +54,15 @@ router.post('/', (req, res, next) => {
         email: req.body.email,
         nombre: req.body.nombre,
         password: req.body.password,
-        phone: req.body.phone
+        phone: req.body.phone,
+        posicion:  req.body.posicion,
+        enemigosmuertos: req.body.enemigosmuertos,
+        inventario: req.body.inventario,
+        gameobject: req.body.gameobject,
+        escena: req.body.escena,
+        vida: req.body.vida,
+        daño: req.body.daño,
+        dañoactual: req.body.dañoactual
 
     });
     usuario.save()
@@ -66,7 +74,15 @@ router.post('/', (req, res, next) => {
                     _id: result._id,
                     nombre: result.nombre,
                     email: result.email,
-                    phone: result.phone
+                    phone: result.phone,
+                    posicion:  result.posicion,
+                    enemigosmuertos: result.enemigosmuertos,
+                    inventario: result.inventario,
+                    gameobject: result.gameobject,
+                    escena: result.escena,
+                    vida: result.vida,
+                    daño: result.daño,
+                    dañoactual: result.dañoactual,
                 }
             });
         })
@@ -84,7 +100,7 @@ router.post('/', (req, res, next) => {
  * @param  {url}   "/signup" [description]
  * @param  {responses} (req,     res,          next) [description]
  * @return {[type]}             [description]
- */
+ *//*
  router.post("/signup", (req, res, next) => {
    User.find({ email: req.body.email })
      .exec()
@@ -123,7 +139,7 @@ router.post('/', (req, res, next) => {
          });
        }
      });
- });
+ });*/
 
 router.post("/login", (req, res, next) => {
   User.find({ email: req.body.email })
@@ -204,7 +220,7 @@ router.delete('/:userID', (req, res, next) => {
 router.get('/:userID', (req, res, next) => {
     const id = req.params.userID;
     User.findById(id)
-        .select('_id email nombre password phone publicaciones')
+        .select('')
         .exec()
         .then(doc => {
             console.log(" Desde la DB ", doc);
@@ -261,11 +277,13 @@ router.patch('/:userID', (req, res, next) => {
  * @param  {function} (req,                    res,          next [description]
  * @return {[type]}                          [description]
  */
+
+/*
 router.get('/:userID/publicaciones', (req, res, next) => {
     const id = req.params.userID;
     User.findById(id)
         .select('publicaciones')
-        .populate('publicaciones'/*,'name'*/)
+        .populate('publicaciones')
         .exec()
         .then(doc => {
             if (doc) {
@@ -284,6 +302,7 @@ router.get('/:userID/publicaciones', (req, res, next) => {
         });
 });
 
+*/
 
 // post into an array of objects of a url still whit problems
 
@@ -293,6 +312,7 @@ router.get('/:userID/publicaciones', (req, res, next) => {
  * @param  {function} (req,                    res,          next [description]
  * @return {response}                          message
  */
+/*
 router.post('/:userID/publicaciones', (req, res, next) => {
     const id = req.params.userID;
     const idinmueble = req.body.idinmueble;
@@ -315,5 +335,5 @@ router.post('/:userID/publicaciones', (req, res, next) => {
         });
 });
 
-
+*/
 module.exports = router;

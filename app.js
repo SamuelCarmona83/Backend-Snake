@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 const morgan = require('morgan');
-const inmueblesRoutes = require('./api/routes/inmuebles');
+//const inmueblesRoutes = require('./api/routes/inmuebles');
 const usersRoutes = require('./api/routes/users');
 const bodyParser =require('body-parser');
 const mongoose = require('mongoose');
@@ -36,7 +36,7 @@ app.use((req, res, next)=>{
 
 //Rutas que manejan las peticiones
 app.use('/users', usersRoutes);
-app.use('/inmuebles', inmueblesRoutes);
+//app.use('/inmuebles', inmueblesRoutes);
 
 
 

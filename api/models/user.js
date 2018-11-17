@@ -11,16 +11,25 @@ const userSchema = mongoose.Schema({
 	nombre: { type: String},
 	password: { type: String, required: true},
 	phone:  { type: String},
-	publicaciones : [{ type: mongoose.Schema.Types.ObjectId, ref: 'Inmueble'}],
-	resume: { type: String},
-	clients :[{ type: mongoose.Schema.Types.ObjectId, ref: 'Cliente'}],
-	friends: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User'}],
-	favorites: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Inmueble'}],
-	role: { type: String, default: "agent"}
+		posicion:  [Number],
+		enemigosmuertos: { type: Number},
+		inventario: { type: String},
+		gameobject: { type: String},
+		escena: { type: String},
+		vida: {type: Number},
+		daño: {type: Number},
+		dañoactual: {type: Number}
 	
-	//Extras
-	//solicitudes[]
-	//url foto de perfil
+
+	//posicion 2 float
+	//contador enemigos muertos int
+	//inventario string
+	//Gameobject string
+	//escena actual string
+	//vida actual int
+	//daño int
+	//daño actual int
+
 });
 
 module.exports = mongoose.model('User', userSchema);
