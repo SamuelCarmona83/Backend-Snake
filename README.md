@@ -1,8 +1,6 @@
 # Backend
-Backend Suburbuy - Sistemas de Informacion
 
 # Enlace al Deploy
-https://apirest-suburbuy.herokuapp.com/
 
 # Local Mode
 
